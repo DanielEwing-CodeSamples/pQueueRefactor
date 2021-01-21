@@ -1,0 +1,21 @@
+1.0 Program Functionality 1/19 - The program found online at, https://github.com/johngoza/actData2, ss a barebones program designed to fool the user into thinking the project requirements were met through the most cursory
+	of demonstrations. The first round of edits focuses on refactoring of code found on GitHub, https://github.com/johngoza/actData2
+
+		library.cpp and .h: checkOutBook function replaces circulate_book function
+			Employees now check out individual books, previously each employee was attempting to check out every book. 
+			Now checks that the person attempting to check out a book is in the list of employees.
+			Now checks both the list of books in circulation and the archive for the book which has been requested and checks it out from there. Previously only the books in circulation were searched.
+		
+		Book.cpp and .h: addEmployeeToQueue function replaces populateQueue function
+			Allows the functionality changes described for the checkOutBook function listed above. 
+
+
+1.01 More Functionality 1/20
+		Employees now have an average retain time alongside a total retain time, ensuring employees who check out a lot of books and return them quickly dont lose priority to those who fail to return books
+			 theyve rented but have only checked out a couple books. 
+		Fixed issues in the returnBook function in library.cpp. If a book is returned to the archive before being checked out there are issues with the lastHeld date being set to the date the book was added 
+			to the library and not the actual date.
+
+1.02 Weights for employees 1/21
+		Employees now have a weight assigned to them. The new priority is employeePriority * (waitTime-avgRetainTime) instead of waitTime-avgRetainTime. This ensures that an executive would not have to wait while
+		a junior associate rents a book, unless the executive is notorious for failure to return their books in a timely fashion. Default priority for someone who has checked out 0 books is now priority * -5.
